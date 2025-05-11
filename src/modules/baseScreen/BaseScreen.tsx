@@ -2,10 +2,12 @@ import React, {FC} from 'react';
 
 import {
   ActivityIndicator,
+  Keyboard,
   KeyboardAvoidingView,
   Platform,
   ScrollView,
   StatusBar,
+  TouchableWithoutFeedback,
   View,
 } from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
@@ -33,20 +35,24 @@ const BaseScreen: FC<IBaseScreenProps> = ({
       {showHeader && <Header title={title} onBackPress={onBackPress} />}
       <KeyboardAvoidingView
         style={styles.container}
-        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
+        behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+        keyboardVerticalOffset={Platform.OS === 'ios' ? 60 : 0}>
         {showLoader ? (
           <View style={styles.activityIndicator}>
             <ActivityIndicator size="large" color={theme.info} />
           </View>
         ) : isScrollEnabled ? (
-          <ScrollView
-            contentContainerStyle={{flex: 1}}
-            showsVerticalScrollIndicator={false}
-            showsHorizontalScrollIndicator={false}>
-            {children}
-          </ScrollView>
+          <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+            <ScrollView
+              contentContainerStyle={{flexGrow:1}}
+              keyboardShouldPersistTaps="handled"
+              showsVerticalScrollIndicator={false}
+              showsHorizontalScrollIndicator={false}>
+              {children}
+            </ScrollView>
+          </TouchableWithoutFeedback>
         ) : (
-          <View style={{flex:1}}>{children}</View>
+          <View style={{flex: 1}}>{children}</View>
         )}
       </KeyboardAvoidingView>
     </SafeAreaView>
