@@ -1,0 +1,34 @@
+{
+  "language": "English",
+  "screens": {
+      "intro": {
+          "title": "Popular Movies",
+          "text": {
+              "introText": "This is the intro text in english",
+              "login": "Login",
+              "signup": "Sign Up"
+          }
+      },
+      "login": {
+          "title": "Sign in",
+          "text": {
+              "login": "login",
+              "emailAddress": "Email address",
+              "phoneNumber":"Phone Number",
+              "password": "Password",
+              "continue": "Continue",
+              "createAccount": "Create an Account",
+              "forgotPassword": "Forgotten password?",
+              "welcome":"Welcome Back",
+              "dontHaveAnAccount":"Don't have an account?",
+              "signUp":"Sign Up"
+          }
+      },
+      "movies":{
+        "title":"Popular Movies",
+        "text":{
+            
+        }
+      }
+  }
+}

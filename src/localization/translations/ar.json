@@ -1,0 +1,32 @@
+{
+  "language": "Arabic",
+  "screens": {
+    "intro": {
+      "title": "أفلام شهيرة",
+      "text": {
+        "introText": "هذا هو نص المقدمة باللغة العربية",
+        "login": "تسجيل الدخول",
+        "signup": "إنشاء حساب"
+      }
+    },
+    "login": {
+      "title": "تسجيل الدخول",
+      "text": {
+        "login": "تسجيل الدخول",
+        "emailAddress": "عنوان البريد الإلكتروني",
+        "phoneNumber": "رقم الهاتف",
+        "password": "كلمة المرور",
+        "continue": "استمرار",
+        "createAccount": "إنشاء حساب",
+        "forgotPassword": "هل نسيت كلمة المرور؟",
+        "welcome": "مرحباً بعودتك",
+        "dontHaveAnAccount": "ليس لديك حساب؟",
+        "signUp": "إنشاء حساب"
+      }
+    },
+    "movies": {
+      "title": "أفلام شهيرة",
+      "text": {}
+    }
+  }
+}
