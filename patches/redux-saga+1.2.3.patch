@@ -1,0 +1,10 @@
+diff --git a/node_modules/redux-saga/import-condition-proxy.mjs b/node_modules/redux-saga/import-condition-proxy.mjs
+index 14b6309..43f62ea 100644
+--- a/node_modules/redux-saga/import-condition-proxy.mjs
++++ b/node_modules/redux-saga/import-condition-proxy.mjs
+@@ -1,4 +1,4 @@
+ export * from './dist/redux-saga-core-npm-proxy.cjs.js'
+ import _default from './dist/redux-saga-core-npm-proxy.cjs.js'
+ 
+-export default _default.default
++export default _default
