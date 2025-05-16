@@ -21,7 +21,10 @@
               "forgotPassword": "Forgotten password?",
               "welcome":"Welcome Back",
               "dontHaveAnAccount":"Don't have an account?",
-              "signUp":"Sign Up"
+              "signUp":"Sign Up",
+              "changeLanguage":"Change language",
+              "emailErrorMessage":"Please provide email address in correct formate ex:abc@abc.ac",
+              "passwordErrorMessage":"Password should be a combination of alphabet number and special character"
           }
       },
       "movies":{

@@ -6,12 +6,16 @@ import {
   onPopularMovieFetchFailure,
   onPopularMovieFetchSuccess,
 } from './MoviesActions';
-
 // worker Saga: will be fired on USER_FETCH_REQUESTED actions
 function* onPopularMoviesFetch(action: {
-  payload: {pageNo: number; popularMovies: any};
+  payload: {pageNo: number; selectedLanguage:string; popularMovies: any};
 }) {
-  const url = `${POPULAR_MOVIE_LIST_API}${action.payload.pageNo}`;
+  const params: Record<string, string> = {
+    page: action.payload.pageNo.toString(),
+    language: action.payload.selectedLanguage,
+  };
+  const queryString = new URLSearchParams(params).toString();
+  const url = `${POPULAR_MOVIE_LIST_API}${queryString}`;
   try {
     const res = yield call(API.get, url);
     if (action.payload.pageNo > 1) {

@@ -3,20 +3,20 @@ import {useStyles} from '@customHooks/useStyles';
 import React, {useEffect, useRef} from 'react';
 import {Animated, Easing, View} from 'react-native';
 import splashScreenStyles from './SplashScreenStyles';
-import usePopularMoviesNavigation from '@navigation/usePopularMovieNavigation';
 import AppConstants from '@constants/AppConstants';
 import {useTranslation} from 'react-i18next';
-import {useSelector} from 'react-redux';
-import {ActionTypes} from '@popularMoviesMiddleware/redux/ActionTypes';
+import {useDispatch} from 'react-redux';
+import { useTheme } from '@customHooks/useTheme';
+import { onUserLoginSuccess } from '@popularMoviesMiddleware/redux/login/LoginActions';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const SplashScreenPresenter = () => {
   const splashStyles = useStyles(splashScreenStyles);
+  const theme = useTheme();
   const {i18n} = useTranslation();
   const introText = AppConstants().introTitle;
   const characters = introText.split('');
-  const navigation = usePopularMoviesNavigation();
-
-  const userState = useSelector((state: any) => state.LoginReducer);
+  const dispatch = useDispatch();
 
   const animations = useRef(
     characters.map(() => new Animated.Value(0)),
@@ -34,16 +34,12 @@ const SplashScreenPresenter = () => {
     );
 
     Animated.stagger(100, animatedSequence).start(() => {
-      setTimeout(() => {
-        if (userState?.action === ActionTypes.ON_USER_LOGIN_SUCCESS) {
-          if (userState?.onUserLoginResponse?.isUserLoggedIn) {
-            navigation.replace('PopularMoviesContainer', {props: ''});
-          } else {
-            navigation.replace('LoginContainer');
-          }
-        }
+      setTimeout(async() => {
+        (async () =>{
+          const isUserLoggedIn = await AsyncStorage.getItem('isUserLoggedIn');
+          dispatch(onUserLoginSuccess({isUserLoggedIn:Boolean(isUserLoggedIn),isSplashScreenCompleted:'true'}));
+        })();
       }, 1000);
-      // Call a function or update state here
     });
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -71,7 +67,7 @@ const SplashScreenPresenter = () => {
                 },
               ],
               fontSize: 50,
-              color: '#fff',
+              color: theme.text,
             }}>
             {char}
           </Animated.Text>

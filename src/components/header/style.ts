@@ -1,15 +1,16 @@
-import { ThemeType } from '@customHooks/useTheme';
+import {ThemeType} from '@customHooks/useTheme';
 import normalize from '@utils/utilities';
-import { StyleSheet } from 'react-native';
+import {StyleSheet} from 'react-native';
 
 export default (theme: ThemeType) =>
   StyleSheet.create({
     container: {
       flexDirection: 'row',
       alignItems: 'center',
-      // justifyContent: 'space-between',
+      justifyContent: 'space-between',
       height: 56,
       paddingHorizontal: normalize(10),
+      elevation: 5,
     },
     backButton: {
       padding: normalize(6),
@@ -21,5 +22,6 @@ export default (theme: ThemeType) =>
     },
     rightComponent: {
       padding: 8,
+      alignContent: 'flex-end',
     },
   });

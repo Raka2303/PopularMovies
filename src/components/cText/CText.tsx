@@ -44,9 +44,19 @@ const SmallText: FC<ICtext> = ({children, style, ...rest}) => {
   );
 };
 
+const ErrorText: FC<ICtext> = ({children, style, ...rest}) => {
+  const styles = useStyles(CTextStyles);
+  return (
+    <Text style={[styles.errorText,style]} {...rest}>
+      {children}
+    </Text>
+  );
+};
+
 export default {
   HeaderText,
   SubHeaderText,
   ParaText,
   SmallText,
+  ErrorText,
 };

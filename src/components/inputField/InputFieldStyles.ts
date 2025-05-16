@@ -13,6 +13,8 @@ export default (theme: ThemeType) => {
       color: theme.text,
       fontSize: normalize(14),
       fontWeight: '400',
+      minHeight:normalize(60),
+      // direction: 'rtl',
     },
   });
 };

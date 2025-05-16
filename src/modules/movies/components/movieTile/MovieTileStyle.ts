@@ -1,20 +1,28 @@
+import { ThemeType } from '@customHooks/useTheme';
 import normalize from '@utils/utilities';
 import {StyleSheet} from 'react-native';
 
-export default () => {
+export default (theme:ThemeType) => {
   return StyleSheet.create({
     movieTileContainer: {
       width: normalize(190),
-      height: normalize(300),
+      height: normalize(150),
+      backgroundColor:theme.textSecondary,
+      marginBottom:normalize(16),
+      alignItems:'center',
+      borderWidth:0.5,
+      borderRadius: 12,
+      overflow: 'hidden',
+      elevation: 5,
+
     },
     movieTile: {
       width: normalize(190),
-      height: normalize(190),
+      height: normalize(100),
     },
     movieTitle: {
-      // backgroundColor:theme.card,
       width: normalize(190),
-      height: normalize(110),
+      height: normalize(50),
       alignItems:'center',
       justifyContent:'center',
     },

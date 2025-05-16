@@ -9,4 +9,5 @@ export interface IBaseScreenProps {
     cartCount?: string;
     testID?: string;
     onBackPress?: () => void;
+    rightComponent?:React.ReactNode
   }

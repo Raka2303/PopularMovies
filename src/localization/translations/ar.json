@@ -1,10 +1,10 @@
 {
-  "language": "Arabic",
+  "language": "العربية",
   "screens": {
     "intro": {
-      "title": "أفلام شهيرة",
+      "title": "أفلام مشهورة",
       "text": {
-        "introText": "هذا هو نص المقدمة باللغة العربية",
+        "introText": "هذا هو النص التمهيدي باللغة العربية",
         "login": "تسجيل الدخول",
         "signup": "إنشاء حساب"
       }
@@ -16,16 +16,19 @@
         "emailAddress": "عنوان البريد الإلكتروني",
         "phoneNumber": "رقم الهاتف",
         "password": "كلمة المرور",
-        "continue": "استمرار",
+        "continue": "متابعة",
         "createAccount": "إنشاء حساب",
         "forgotPassword": "هل نسيت كلمة المرور؟",
-        "welcome": "مرحباً بعودتك",
+        "welcome": "مرحبًا بعودتك",
         "dontHaveAnAccount": "ليس لديك حساب؟",
-        "signUp": "إنشاء حساب"
+        "signUp": "إنشاء حساب",
+        "changeLanguage": "تغيير اللغة",
+        "emailErrorMessage": "يرجى إدخال عنوان بريد إلكتروني بصيغة صحيحة مثل: abc@abc.ac",
+        "passwordErrorMessage": "يجب أن تتكون كلمة المرور من أحرف وأرقام ورموز خاصة"
       }
     },
     "movies": {
-      "title": "أفلام شهيرة",
+      "title": "أفلام مشهورة",
       "text": {}
     }
   }

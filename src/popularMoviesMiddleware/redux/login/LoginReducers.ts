@@ -1,6 +1,6 @@
 import {ActionTypes} from '@popularMoviesMiddleware/redux/ActionTypes';
 
-interface ILoginState {
+export interface ILoginState {
   payload: any;
   onUserLoginResponse: any;
   error: any;
@@ -13,6 +13,7 @@ const initialState: ILoginState = {
   onUserLoginResponse: null,
   error: null,
   isLoading: false,
+  action:'',
 };
 
 export const LoginReducer = (state = initialState, action: any) => {
@@ -20,28 +21,28 @@ export const LoginReducer = (state = initialState, action: any) => {
     case ActionTypes.ON_USER_LOGIN:
       return {
         ...state,
-        Payload: action.payload,
+        payload: action.payload,
         action: action.type,
         onUserLoginResponse: {},
-        Error: null,
+        error: null,
         isLoading: true,
       };
     case ActionTypes.ON_USER_LOGIN_SUCCESS:
       return {
         ...state,
-        Payload: {},
+        payload: {},
         action: action.type,
         onUserLoginResponse: action.value,
-        Error: null,
+        error: null,
         isLoading: false,
       };
     case ActionTypes.ON_USER_LOGIN_FAILURE:
       return {
         ...state,
-        Payload: action.payload,
+        payload: action.payload,
         action: action.type,
         onUserLoginResponse: {},
-        Error: action.error,
+        error: action.error,
         isLoading: false,
       };
 

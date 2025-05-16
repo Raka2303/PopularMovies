@@ -6,11 +6,11 @@ import SplashScreenPresenter from './SplashScreenPresenter';
 
 const SplashScreenContainer: FC<
   NativeStackScreenProps<TRootStackParamList, 'SplashScreenContainer'>
-> = ({}) => {
-
+> = ({navigation, route}) => {
+console.log(route.params)
   return (
     <BaseScreen showHeader={false}>
-      <SplashScreenPresenter />
+      <SplashScreenPresenter onAnimationComplete={() => {}} />
     </BaseScreen>
   );
 };

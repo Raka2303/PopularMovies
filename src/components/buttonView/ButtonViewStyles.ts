@@ -5,11 +5,11 @@ import {StyleSheet} from 'react-native';
 export default (theme: ThemeType) => {
   return StyleSheet.create({
     container: {
-        flex:1,
-        backgroundColor:theme.primaryVariant,
-        borderRadius:normalize(50),
-        justifyContent:'center',
-        alignItems:'center'
+      flex: 1,
+      backgroundColor: theme.primaryVariant,
+      borderRadius: normalize(50),
+      justifyContent: 'center',
+      alignItems: 'center',
     },
   });
 };

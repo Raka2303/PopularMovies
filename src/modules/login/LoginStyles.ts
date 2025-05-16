@@ -18,7 +18,7 @@ export default (theme: ThemeType) => {
     },
     phoneNumberInput: {
       width: '100%',
-      height: 60,
+      // minHeight: 100,
       paddingHorizontal: normalize(16),
       overflow: 'hidden',
     },

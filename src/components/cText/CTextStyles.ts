@@ -24,6 +24,11 @@ export default (theme:ThemeType) => {
         fontWeight:'400',
         color:theme.text,
        },
+       errorText:{
+        fontSize:normalize(10),
+        fontWeight:'400',
+        color:theme.error,
+       },
        inputText:{
         fontSize:normalize(14),
         fontWeight:'400',

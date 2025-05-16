@@ -26,13 +26,14 @@ const BaseScreen: FC<IBaseScreenProps> = ({
   showHeader = true,
   isScrollEnabled = true,
   onBackPress,
+  rightComponent = <></>,
 }) => {
   const styles = useStyles(BaseScreenStyle);
   const theme = useTheme();
   return (
     <SafeAreaView edges={['right', 'left', 'top']} style={[styles.container]}>
-      <StatusBar barStyle={'light-content'} />
-      {showHeader && <Header title={title} onBackPress={onBackPress} />}
+      <StatusBar barStyle={'dark-content'} translucent />
+      {showHeader && <Header title={title} onBackPress={onBackPress} rightComponent={rightComponent}/>}
       <KeyboardAvoidingView
         style={styles.container}
         behavior={Platform.OS === 'ios' ? 'padding' : undefined}
