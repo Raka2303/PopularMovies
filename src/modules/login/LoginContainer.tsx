@@ -42,18 +42,16 @@ const LoginContainer: FC<Props> = ({}) => {
     if (!isTyping) {
       if (phoneNumber && !emailRegex.test(phoneNumber)) {
         setPhoneNumberError(emailErrorMessage);
-      }
-      else{
+      } else {
         setPhoneNumberError('');
       }
       if (password && !passwordRegex.test(password)) {
         setPasswordError(passwordErrorMessage);
-      }
-      else{
+      } else {
         setPasswordError('');
       }
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isTyping, phoneNumber, password]);
 
   const onLanguageOptionSelectionHandler = (value: string) => {
@@ -62,6 +60,10 @@ const LoginContainer: FC<Props> = ({}) => {
       isSelected: item.value === value,
     }));
     i18n.changeLanguage(updatedDropDownData.find(item => item.isSelected)?.key);
+    AsyncStorage.setItem(
+      'selectedLanguage',
+      updatedDropDownData.find(item => item.isSelected)?.key!,
+    );
     setDropDownData(updatedDropDownData);
   };
 

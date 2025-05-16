@@ -6,8 +6,8 @@ import splashScreenStyles from './SplashScreenStyles';
 import AppConstants from '@constants/AppConstants';
 import {useTranslation} from 'react-i18next';
 import {useDispatch} from 'react-redux';
-import { useTheme } from '@customHooks/useTheme';
-import { onUserLoginSuccess } from '@popularMoviesMiddleware/redux/login/LoginActions';
+import {useTheme} from '@customHooks/useTheme';
+import {onUserLoginSuccess} from '@popularMoviesMiddleware/redux/login/LoginActions';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const SplashScreenPresenter = () => {
@@ -22,6 +22,15 @@ const SplashScreenPresenter = () => {
     characters.map(() => new Animated.Value(0)),
   ).current;
 
+  useEffect(()=>{
+    (async()=>{
+      const selectedLanguage = await AsyncStorage.getItem(
+        'selectedLanguage',
+      );
+      i18n.changeLanguage(selectedLanguage!);
+    })();
+  },[i18n]);
+
   useEffect(() => {
     const animatedSequence = characters.map((_, index) =>
       Animated.timing(animations[index], {
@@ -34,21 +43,24 @@ const SplashScreenPresenter = () => {
     );
 
     Animated.stagger(100, animatedSequence).start(() => {
-      setTimeout(async() => {
-        (async () =>{
+      setTimeout(async () => {
+        (async () => {
           const isUserLoggedIn = await AsyncStorage.getItem('isUserLoggedIn');
-          dispatch(onUserLoginSuccess({isUserLoggedIn:Boolean(isUserLoggedIn),isSplashScreenCompleted:'true'}));
+          const selectedLanguage = await AsyncStorage.getItem(
+            'selectedLanguage',
+          );
+          dispatch(
+            onUserLoginSuccess({
+              isUserLoggedIn: Boolean(isUserLoggedIn),
+              isSplashScreenCompleted: 'true',
+              selectedLanguage: selectedLanguage,
+            }),
+          );
         })();
       }, 1000);
     });
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  useEffect(() => {
-    setTimeout(() => {
-      i18n?.changeLanguage('en');
-    }, 3000);
-  }, [i18n]);
 
   return (
     <View style={splashStyles.container}>

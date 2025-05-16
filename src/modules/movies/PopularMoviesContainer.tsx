@@ -12,6 +12,7 @@ import PopularMoviesShimmerEffect from './components/popularMoviesShimmerEffect/
 import {IDropDown} from '@components/dropdownView/types';
 import i18n from '../../localization/i18n';
 import {onUserLoginSuccess} from '@popularMoviesMiddleware/redux/login/LoginActions';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 type Props = NativeStackScreenProps<
   TRootStackParamList,
@@ -29,16 +30,21 @@ const PopularMoviesContainer: FC<Props> = ({}) => {
   const loginState = useSelector((state: any) => state.LoginReducer);
 
   useEffect(() => {
+    const updatedDropDownData = dropDownData.map(item => ({
+      ...item,
+      isSelected: item.key === loginState?.onUserLoginResponse.selectedLanguage,
+    }));
+    setDropDownData(updatedDropDownData);
+    i18n.changeLanguage(loginState?.onUserLoginResponse.selectedLanguage);
     // setTimeout(() => {
-      dispatch(
-        onPopularMovieFetch({
-          pageNo: popularMovies?.popularMovies?.data?.page || 1,
-          selectedLanguage: loginState.onUserLoginResponse.selectedLanguage,
-          popularMovies,
-        }),
-      );
+    dispatch(
+      onPopularMovieFetch({
+        pageNo: popularMovies?.popularMovies?.data?.page || 1,
+        selectedLanguage: loginState.onUserLoginResponse.selectedLanguage,
+        popularMovies,
+      }),
+    );
     // }, 1000);
-    
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -56,10 +62,15 @@ const PopularMoviesContainer: FC<Props> = ({}) => {
       isSelected: item.value === value,
     }));
     i18n.changeLanguage(updatedDropDownData.find(item => item.isSelected)?.key);
+    AsyncStorage.setItem(
+      'selectedLanguage',
+      updatedDropDownData.find(item => item.isSelected)?.key!,
+    );
     setDropDownData(updatedDropDownData);
     dispatch(
       onUserLoginSuccess({
         isUserLoggedIn: true,
+        isSplashScreenCompleted: 'true',
         selectedLanguage: dropDownData.find(item => item.isSelected)?.key,
       }),
     );
@@ -77,29 +88,7 @@ const PopularMoviesContainer: FC<Props> = ({}) => {
     <BaseScreen
       isScrollEnabled={false}
       showHeader={true}
-      title={popularMovieTitle}
-      // rightComponent={
-      //   <View style={{flexDirection:'row'}}>
-      //     <CText.SubHeaderText style={dropDownStyles.label}>{'dropDownTitle'}</CText.SubHeaderText>
-      //     <Picker
-      //       selectedValue={dropDownData.find(item => item.isSelected)?.value}
-      //       onValueChange={optionValue =>
-      //         onLanguageOptionSelectionHandler(optionValue)
-      //       }
-      //       style={dropDownStyles.picker}
-      //       dropdownIconColor={useTheme().text}>
-      //       {dropDownData.map(option => (
-      //         <Picker.Item
-      //           key={option.key}
-      //           label={option.label}
-      //           value={option.value}
-      //           style={[fontStyles.subHeaderText, {backgroundColor: 'red'}]}
-      //         />
-      //       ))}
-      //     </Picker>
-      //   </View>
-      // }
-    >
+      title={popularMovieTitle}>
       {popularMovies?.popularMovies ? (
         <PopularMoviesPresenter
           dropDownData={dropDownData}
